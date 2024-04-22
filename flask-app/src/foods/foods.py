@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, make_response, Flask
-import db
+from src import db
 
 foods = Blueprint('foods', __name__)
 
