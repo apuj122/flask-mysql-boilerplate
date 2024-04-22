@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, Flask
 from src import db
 
 users = Blueprint('users', __name__)
