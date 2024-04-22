@@ -11,7 +11,9 @@ create database MovieSpot;
 -- TODO: If you changed the name of the database above, you need 
 -- to change it here too.
 grant all privileges on MovieSpot.* to 'webapp'@'%';
-flush privileges;
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'18.223.74.85' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'3.131.104.27' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
 
 -- Move into the database we just created.
 -- TODO: If you changed the name of the database above, you need to
