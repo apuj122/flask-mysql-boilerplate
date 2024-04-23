@@ -11,8 +11,9 @@ create database MovieSpot;
 -- TODO: If you changed the name of the database above, you need 
 -- to change it here too.
 grant all privileges on MovieSpot.* to 'webapp'@'%';
-GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'18.223.74.85' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'3.131.104.27' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'18.223.74.85' IDENTIFIED BY 'helloworld1234';
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'3.131.104.27' IDENTIFIED BY 'helloworld1234';
+GRANT ALL PRIVILEGES ON database_name.* TO 'root'@'172.18.0.4' IDENTIFIED BY 'helloworld1234';
 FLUSH PRIVILEGES;
 
 -- Move into the database we just created.
@@ -23,7 +24,6 @@ use MovieSpot;
 -- Put your DDL 
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    pass VARCHAR(50) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email_address VARCHAR(100) NOT NULL UNIQUE,
@@ -35,9 +35,9 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Movies (
-    movie_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(50) NOT NULL,
-    length INT NOT NULL,
+    movie_id VARCHAR(25) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    length VARCHAR(50) NOT NULL,
     director VARCHAR(50) NOT NULL,
     plot VARCHAR(255) NOT NULL,
     genre VARCHAR(50) NOT NULL,
@@ -45,20 +45,20 @@ CREATE TABLE Movies (
 );
 
 CREATE TABLE Theaters (
-    theater_id INT AUTO_INCREMENT PRIMARY KEY,
+    theater_id VARCHAR(25) PRIMARY KEY,
     num_halls INT NOT NULL,
     city VARCHAR(100) NOT NULL,
     sells_foods BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE Foods (
-    food_id INT AUTO_INCREMENT PRIMARY KEY,
-    price INT NOT NULL,
+    food_id VARCHAR(100) PRIMARY KEY,
+    price FLOAT NOT NULL,
     name VARCHAR(50) NOT NULL
 );
 
 INSERT INTO Theaters (theater_id, num_halls, city, sells_foods)
-VALUES 
+VALUES
 ('1311-NP', 102, 'Bururi', 80),
 ('5441-BX', 104, 'Tuochuan', 82),
 ('1242-ZV', 102, 'Santo Amador', 56),
@@ -133,7 +133,7 @@ VALUES
 
 
 INSERT INTO Users (user_id, first_name, last_name, email_address, location, phone, preferences, created_at, last_updated)
-VALUES 
+VALUES
 (1, 'Vivianna', 'Swiers', 'vswiers0@vkontakte.ru', '6953 Pond Point', '252-783-3144', 'Drama', '2023-09-26', '2023-09-08'),
 (2, 'Worthy', 'Ellicombe', 'wellicombe1@unblog.fr', '74161 Hanover Trail', '646-391-6085', 'Comedy', '2023-09-06', '2024-03-01'),
 (3, 'Gualterio', 'Wathell', 'gwathell2@oakley.com', '06 Mcbride Drive', '846-502-9675', 'Drama|Romance', '2023-09-08', '2024-03-04'),
@@ -280,73 +280,73 @@ INSERT INTO Movies (title, length, director, plot, genre, actors, movie_id) VALU
 
 -- Insert sample data into Foods table
 INSERT INTO Foods (food_id, price, name) VALUES
-('food456', 624.97, 'sushi'),
+('food45', 624.97, 'sushi'),
 ('food789', 517.68, 'soup'),
-('food987', 862.22, 'taco'),
+('food97', 862.22, 'taco'),
 ('food987', 137.27, 'curry'),
 ('food123', 657.27, 'sushi'),
 ('food456', 490.55, 'sushi'),
-('food789', 720.48, 'pasta'),
-('food987', 659.05, 'salad'),
-('food987', 846.12, 'salad'),
-('food123', 13.37, 'soup'),
-('food456', 609.05, 'curry'),
-('food123', 385.36, 'burger'),
-('food789', 455.83, 'pasta'),
-('food456', 617.9, 'taco'),
-('food456', 269.87, 'taco'),
-('food123', 954.01, 'sushi'),
-('food987', 437.15, 'sandwich'),
-('food123', 144.72, 'steak'),
-('food123', 816.89, 'pizza'),
-('food789', 83.91, 'salad'),
-('food789', 355.95, 'steak'),
-('food987', 405.19, 'taco'),
-('food789', 180.89, 'curry'),
-('food987', 998.27, 'steak'),
-('food789', 839.16, 'taco'),
-('food123', 755.58, 'sushi'),
-('food789', 768.39, 'soup'),
-('food456', 723.14, 'steak'),
-('food456', 711.69, 'steak'),
-('food123', 239.21, 'steak'),
-('food123', 80.2, 'soup'),
-('food789', 860.83, 'pasta'),
-('food456', 128.84, 'soup'),
-('food456', 559.31, 'pizza'),
-('food456', 635.94, 'pasta'),
-('food123', 3.24, 'sandwich'),
-('food456', 142.94, 'salad'),
-('food456', 323.57, 'burger'),
-('food123', 814.71, 'salad'),
-('food987', 761.44, 'pizza'),
-('food987', 912.3, 'steak'),
-('food456', 588.77, 'pasta'),
-('food987', 560.73, 'burger'),
-('food123', 831.68, 'curry'),
-('food123', 357.86, 'sushi'),
-('food789', 716.36, 'taco'),
-('food123', 484.46, 'soup'),
-('food123', 332.22, 'steak'),
-('food456', 802.95, 'burger'),
-('food789', 609.38, 'taco'),
-('food123', 972.49, 'steak'),
-('food789', 95.76, 'curry'),
-('food789', 433.24, 'taco'),
-('food123', 220.48, 'curry'),
-('food123', 605.56, 'taco'),
-('food987', 359.79, 'burger'),
-('food987', 821.35, 'sushi'),
-('food789', 154.75, 'sushi'),
-('food123', 476.1, 'curry'),
-('food123', 410.68, 'sandwich'),
-('food456', 968.76, 'sushi'),
-('food456', 426.04, 'pasta'),
-('food987', 156.65, 'burger'),
-('food789', 521.52, 'burger'),
-('food987', 546.63, 'taco'),
-('food987', 563.76, 'steak'),
-('food123', 95.82, 'burger'),
-('food456', 922.51, 'burger'),
-('food789', 129.14, 'pizza'),
-('food123', 852.67, 'sandwich');
+('food78', 720.48, 'pasta'),
+('food87', 659.05, 'salad'),
+('food7', 846.12, 'salad'),
+('food1', 13.37, 'soup'),
+('food4532', 609.05, 'curry'),
+('food123432', 385.36, 'burger'),
+('food78439', 455.83, 'pasta'),
+('food452346', 617.9, 'taco'),
+('food456432', 269.87, 'taco'),
+('food122343', 954.01, 'sushi'),
+('food984327', 437.15, 'sandwich'),
+('food123243', 144.72, 'steak'),
+('food14223', 816.89, 'pizza'),
+('food78423999', 83.91, 'salad'),
+('food78428839', 355.95, 'steak'),
+('food9843247', 405.19, 'taco'),
+('food7842349', 180.89, 'curry'),
+('food98232237', 998.27, 'steak'),
+('food7843449', 839.16, 'taco'),
+('food124324323', 755.58, 'sushi'),
+('food789234', 768.39, 'soup'),
+('food4575676', 723.14, 'steak'),
+('food45656765', 711.69, 'steak'),
+('food123867', 239.21, 'steak'),
+('food167823', 80.2, 'soup'),
+('food786787869', 860.83, 'pasta'),
+('food456786', 128.84, 'soup'),
+('food45099486', 559.31, 'pizza'),
+('food453456', 635.94, 'pasta'),
+('food1236435', 3.24, 'sandwich'),
+('food45263546', 142.94, 'salad'),
+('food4554234236', 323.57, 'burger'),
+('food1265343', 814.71, 'salad'),
+('food984447', 761.44, 'pizza'),
+('food9444487', 912.3, 'steak'),
+('food456444', 588.77, 'pasta'),
+('food982234557', 560.73, 'burger'),
+('food123654645', 831.68, 'curry'),
+('food12323432454565', 357.86, 'sushi'),
+('food78932465732', 716.36, 'taco'),
+('food12365657632', 484.46, 'soup'),
+('food1239897541', 332.22, 'steak'),
+('food45698863229', 802.95, 'burger'),
+('food7444489', 609.38, 'taco'),
+('food76576123', 972.49, 'steak'),
+('food645789', 95.76, 'curry'),
+('food543789', 433.24, 'taco'),
+('food432123', 220.48, 'curry'),
+('food213123', 605.56, 'taco'),
+('food12897987', 359.79, 'burger'),
+('food89732987', 821.35, 'sushi'),
+('food55322789', 154.75, 'sushi'),
+('food12324323', 476.1, 'curry'),
+('food423123', 410.68, 'sandwich'),
+('food452343246', 968.76, 'sushi'),
+('food452131233126', 426.04, 'pasta'),
+('food98744444', 156.65, 'burger'),
+('food784449', 521.52, 'burger'),
+('food49847', 546.63, 'taco'),
+('food494847', 563.76, 'steak'),
+('food124444443', 95.82, 'burger'),
+('food45422346', 922.51, 'burger'),
+('food7892366334', 129.14, 'pizza'),
+('food12323432432', 852.67, 'sandwich');
